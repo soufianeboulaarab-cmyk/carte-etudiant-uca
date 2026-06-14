@@ -55,7 +55,7 @@ export class CardService {
   async getMyCard(userId: string) {
     const student = await this.prisma.studentInfo.findUnique({
       where: { userId },
-      include: { user: { select: { email: true, role: true } } },
+      include: { user: { select: { email: true, name: true, role: true } } },
     });
     if (!student) throw new NotFoundException('Carte introuvable');
     return { ...student, anneeInscription: this.getAnneeInscription() };

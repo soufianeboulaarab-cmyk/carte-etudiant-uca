@@ -13,6 +13,10 @@
     "node": ">=18"
   },
   "dependencies": {
+    "@prisma/client": "5.22.0",
     "sharp": "^0.35.1"
+  },
+  "devDependencies": {
+    "prisma": "5.22.0"
   }
 }
