@@ -42,6 +42,9 @@ coverage/
 # RS256 Keys — ne jamais commiter
 apps/api/keys/private.pem
 
+# Cookies / tokens de test
+cookies.txt
+
 # Service Worker
 public/sw.js
 public/sw.js.map
