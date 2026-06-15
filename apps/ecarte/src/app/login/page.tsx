@@ -24,6 +24,7 @@ export default function LoginPage() {
     setLoading(true);
     try {
       const res = await signIn.email({ email, password });
+      console.log('BetterAuth response:', res);
       if (res.error) {
         setError(res.error.message || "Email ou mot de passe incorrect.");
         return;
