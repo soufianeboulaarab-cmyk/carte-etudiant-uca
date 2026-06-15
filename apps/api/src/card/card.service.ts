@@ -188,10 +188,18 @@ export class CardService {
   // ─── POST /card/scan-log (SCOLARITE) ──────────────────────────────────────
 
   async createScanLog(scannedBy: string, dto: ScanLogDto) {
-    const user = await this.prisma.user.findUnique({ where: { id: dto.userId } });
-    if (!user) throw new NotFoundException('Étudiant introuvable');
-    return this.prisma.scanLog.create({ data: { userId: dto.userId, scannedBy, location: dto.location } });
-  }
+      const user = await this.prisma.user.findUnique({ where: { id: dto.userId } });
+      if (!user) throw new NotFoundException('Étudiant introuvable');
+      return this.prisma.scanLog.create({
+        data: {
+          userId: dto.userId,
+          scannedBy,
+          location: dto.location,
+          result: dto.result,
+          rejectionReason: dto.rejectionReason,
+        },
+      });
+    }
 
   // ─── GET /card/scans (SCOLARITE) ──────────────────────────────────────────
 

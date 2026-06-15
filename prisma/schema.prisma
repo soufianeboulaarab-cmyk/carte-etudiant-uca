@@ -87,16 +87,32 @@ model Device {
 }
 
 model ScanLog {
-  id        String   @id @default(cuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  scannedBy String
-  location  String?
-  createdAt DateTime @default(now())
+  id              String           @id @default(cuid())
+  userId          String
+  user            User             @relation(fields: [userId], references: [id])
+  scannedBy       String
+  location        String?
+  result          ScanResult       @default(APPROVED)
+  rejectionReason RejectionReason?
+  createdAt       DateTime         @default(now())
 }
 
 enum Role {
   STUDENT
   SCOLARITE
   ADMIN
+}
+
+enum ScanResult {
+  APPROVED
+  REJECTED
+}
+
+enum RejectionReason {
+  PHOTO_MISMATCH
+  NOT_ENROLLED
+  QR_EXPIRED
+  CARD_SUSPENDED
+  WRONG_ESTABLISHMENT
+  OTHER
 }

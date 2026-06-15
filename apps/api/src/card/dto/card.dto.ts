@@ -4,10 +4,12 @@ import {
   IsNotEmpty,
   IsOptional,
   IsInt,
+  IsEnum,
   Min,
   Max,
 } from 'class-validator';
 import { Type } from 'class-transformer';
+import { ScanResult, RejectionReason } from '@prisma/client';
 
 export class RegisterDeviceDto {
   @ApiProperty({ example: 'iPhone 13 Pro' })
@@ -50,6 +52,16 @@ export class ScanLogDto {
   @IsOptional()
   @IsString()
   location?: string;
+
+  @ApiPropertyOptional({ enum: ScanResult, default: ScanResult.APPROVED })
+  @IsOptional()
+  @IsEnum(ScanResult)
+  result?: ScanResult;
+
+  @ApiPropertyOptional({ enum: RejectionReason })
+  @IsOptional()
+  @IsEnum(RejectionReason)
+  rejectionReason?: RejectionReason;
 }
 
 export class ScansQueryDto {
