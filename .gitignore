@@ -51,3 +51,5 @@ public/sw.js.map
 public/workbox-*.js
 public/swe-worker-*.js
 .vercel
+
+./api/keys/private.pem
