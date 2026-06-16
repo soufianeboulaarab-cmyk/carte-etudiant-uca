@@ -40,6 +40,7 @@ export const auth: any = betterAuth({
     'http://localhost:3001',
     'http://localhost:3002',
     process.env.FRONTEND_URL ?? 'http://localhost:3001',
+    'http://192.168.100.13:3002',
   ],
 });
 

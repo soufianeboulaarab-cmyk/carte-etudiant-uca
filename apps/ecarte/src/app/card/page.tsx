@@ -218,7 +218,7 @@ function QRZone({
   timeLeft: number;
   large?: boolean;
 }) {
-  const qrSize = large ? 260 : 200;
+  const qrSize = large ? 300 : 250;
 
   return (
     <div

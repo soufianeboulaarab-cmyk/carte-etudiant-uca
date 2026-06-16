@@ -32,7 +32,11 @@ export default function LoginPage() {
       if (res.data?.token) {
         saveToken(res.data.token);
       }
-      router.push("/card");
+      if ((res.data?.user as { role?: string } | undefined)?.role === 'SCOLARITE') {
+        router.push("/");
+      } else {
+        router.push("/card");
+      }
     } catch {
       setError("Une erreur est survenue. Réessayez.");
     } finally {

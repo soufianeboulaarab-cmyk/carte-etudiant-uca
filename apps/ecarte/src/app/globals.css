@@ -5,8 +5,14 @@
   --uca-blue-dark: #0a1830;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   font-family: system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #0b1d3a;
+  overflow-x: hidden;
 }

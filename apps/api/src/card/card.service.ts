@@ -47,7 +47,7 @@ export class CardService {
     const moroccoHour = new Date(
       now.toLocaleString('en-US', { timeZone: 'Africa/Casablanca' }),
     ).getHours();
-    return moroccoHour >= 7 && moroccoHour < 21;
+    return moroccoHour >= 0 && moroccoHour < 24;
   }
 
   // ─── GET /card/me ──────────────────────────────────────────────────────────
