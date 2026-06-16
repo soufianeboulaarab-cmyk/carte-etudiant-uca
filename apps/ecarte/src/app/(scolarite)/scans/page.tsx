@@ -77,7 +77,33 @@ export default function ScansPage() {
         </div>
       ) : (
         <>
-          <div className="overflow-x-auto rounded-2xl" style={{ background: 'rgba(255,255,255,0.03)', border: '0.5px solid rgba(255,255,255,0.06)' }}>
+          {/* Mobile: card layout */}
+          <div className="md:hidden space-y-3">
+            {data.data.map((entry) => (
+              <div
+                key={entry.id}
+                className="rounded-2xl p-4 space-y-2"
+                style={{ background: 'rgba(255,255,255,0.03)', border: '0.5px solid rgba(255,255,255,0.06)' }}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-white/40 text-[10px] uppercase tracking-wider">
+                    {new Date(entry.createdAt).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })}
+                  </span>
+                  <span className="text-white/20 text-[10px]">{entry.location ?? '—'}</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <Cell label="Email" value={entry.user.email} mono />
+                  <Cell label="CNE" value={entry.user.studentInfo?.cne ?? '—'} mono />
+                  <Cell label="Apogée" value={entry.user.studentInfo?.apogee ?? '—'} mono />
+                  <Cell label="Filière" value={entry.user.studentInfo?.filiere ?? '—'} />
+                  <Cell label="Établissement" value={entry.user.studentInfo?.etablissement ?? '—'} />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop: table layout */}
+          <div className="hidden md:block overflow-x-auto rounded-2xl" style={{ background: 'rgba(255,255,255,0.03)', border: '0.5px solid rgba(255,255,255,0.06)' }}>
             <table className="w-full text-sm">
               <thead>
                 <tr style={{ borderBottom: '0.5px solid rgba(255,255,255,0.06)' }}>
@@ -131,6 +157,15 @@ export default function ScansPage() {
           )}
         </>
       )}
+    </div>
+  );
+}
+
+function Cell({ label, value, mono = false }: { label: string; value: string; mono?: boolean }) {
+  return (
+    <div>
+      <p className="text-white/30 text-[10px] uppercase tracking-wider">{label}</p>
+      <p className={`text-white/80 text-xs mt-0.5 ${mono ? 'font-mono' : ''}`}>{value}</p>
     </div>
   );
 }

@@ -43,38 +43,41 @@ function ScolariteNav() {
 
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 flex border-t z-50"
+      className="fixed bottom-0 left-0 right-0 z-50 border-t"
       style={{
         background: 'rgba(16,36,71,0.97)',
         borderColor: 'rgba(255,255,255,0.08)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
-        paddingBottom: 'env(safe-area-inset-bottom)',
+        paddingBottom: 'env(safe-area-inset-bottom, 0px)',
       }}
     >
-      {tabs.map(({ href, label }) => {
-        const active = pathname === href;
-        return (
-          <Link
-            key={href}
-            href={href}
-            className="flex-1 flex flex-col items-center py-2 gap-0.5"
-          >
-            <div
-              className="flex items-center justify-center px-4 py-1.5 rounded-xl transition-all"
-              style={active ? { background: 'rgba(255,255,255,0.12)' } : { background: 'transparent' }}
+      <div className="flex max-w-lg mx-auto">
+        {tabs.map(({ href, label }) => {
+          const active = pathname === href;
+          return (
+            <Link
+              key={href}
+              href={href}
+              className="flex-1 flex flex-col items-center justify-center min-w-0 gap-0.5"
+              style={{ padding: '6px 4px 4px' }}
             >
-              <NavIcon active={active} label={label} />
-            </div>
-            <span
-              className="text-[10px] font-medium"
-              style={{ color: active ? '#fff' : 'rgba(255,255,255,0.4)' }}
-            >
-              {label}
-            </span>
-          </Link>
-        );
-      })}
+              <div
+                className="flex items-center justify-center rounded-xl transition-all min-w-0"
+                style={{ padding: active ? '6px 12px' : '6px 12px', background: active ? 'rgba(255,255,255,0.12)' : 'transparent' }}
+              >
+                <NavIcon active={active} label={label} />
+              </div>
+              <span
+                className="text-[10px] font-medium truncate max-w-full leading-none"
+                style={{ color: active ? '#fff' : 'rgba(255,255,255,0.4)' }}
+              >
+                {label}
+              </span>
+            </Link>
+          );
+        })}
+      </div>
     </nav>
   );
 }
@@ -136,7 +139,7 @@ export default function ScolariteLayout({ children }: { children: React.ReactNod
   }
 
   return (
-    <main className="min-h-screen pb-20" style={{ background: '#0b1d3a' }}>
+    <main className="min-h-screen pb-24" style={{ background: '#0b1d3a' }}>
       <header className="flex items-center gap-3 px-4 py-3">
         <div
           className="w-7 h-7 rounded-md flex items-center justify-center"
