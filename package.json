@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "start": "pnpm --filter api start",
+    "build": "pnpm --filter api build",
     "dev:ecarte": "pnpm --filter ecarte dev --port 3001",
     "build:ecarte": "pnpm --filter ecarte build",
     "db:up": "docker compose up -d",
