@@ -28,10 +28,14 @@ export class CardService {
     private prisma: PrismaService,
     private r2: R2Service,
   ) {
-    const priv = readFileSync(join(process.cwd(), 'keys', 'private.pem'), 'utf8');
-    const pub = readFileSync(join(process.cwd(), 'keys', 'public.pem'), 'utf8');
-    this.privateKey = importPKCS8(priv, 'RS256');
-    this.publicKey = importSPKI(pub, 'RS256');
+    const priv = process.env.JWT_PRIVATE_KEY
+  ? process.env.JWT_PRIVATE_KEY.replace(/\\n/g, '\n')
+  : readFileSync(join(process.cwd(), 'apps/api/keys', 'private.pem'), 'utf8');
+const pub = process.env.JWT_PUBLIC_KEY
+  ? process.env.JWT_PUBLIC_KEY.replace(/\\n/g, '\n')
+  : readFileSync(join(process.cwd(), 'apps/api/keys', 'public.pem'), 'utf8');
+this.privateKey = importPKCS8(priv, 'RS256');
+this.publicKey = importSPKI(pub, 'RS256');
   }
 
   // ─── Helpers ──────────────────────────────────────────────────────────────
