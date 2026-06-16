@@ -1,7 +1,8 @@
 {
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
-    "buildCommand": "cp -r ../../prisma . && npx prisma generate && npm run build",
-    "startCommand": "node dist/main"
+    "builder": "nixpacks",
+    "buildCommand": "pnpm --filter api build",
+    "startCommand": "pnpm --filter api start"
   }
 }
